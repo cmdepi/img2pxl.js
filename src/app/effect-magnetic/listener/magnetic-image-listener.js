@@ -46,7 +46,7 @@ export default class MagneticImageListener extends ImageListener {
          * @note Add on mouse move event
          *
          */
-        this._canvas.addEventListener("mousemove", event => {
+        this._canvas.addEventListener('mousemove', event => {
             event.preventDefault();
             this.update(pixels, imageData, event.x, event.y);
         });
@@ -56,7 +56,7 @@ export default class MagneticImageListener extends ImageListener {
          * @note Add on touch move event
          *
          */
-        this.canvas.addEventListener("touchmove", event => {
+        this.canvas.addEventListener('touchmove', event => {
             event.preventDefault();
             this.update(pixels, imageData, event.targetTouches[0].clientX, event.targetTouches[0].clientY);
         }, false);

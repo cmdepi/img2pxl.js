@@ -7,7 +7,7 @@
  * @note A magnetic pixel is a pixel that remembers its initial position and try to return to it if it was displaced from it
  *
  */
-import StatefulPixel from "../../../../../../core/model/image/particle/pixel/stateful-pixel.js";
+import StatefulPixel from '../../../../../../core/model/image/particle/pixel/stateful-pixel.js';
 
 export default class MagneticPixel extends StatefulPixel {
     /**
