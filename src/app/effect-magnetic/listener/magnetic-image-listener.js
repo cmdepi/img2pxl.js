@@ -46,7 +46,7 @@ export default class MagneticImageListener extends ImageListener {
          * @note Add on mouse move event
          *
          */
-        this.canvas.addEventListener("mousemove", event => {
+        this._canvas.addEventListener("mousemove", event => {
             event.preventDefault();
             this.update(pixels, imageData, event.x, event.y);
         });
@@ -132,7 +132,7 @@ export default class MagneticImageListener extends ImageListener {
      *
      */
     #pointerToCanvasCoordinates(x, y) {
-        let rect = this.canvas.getBoundingClientRect();
+        let rect = this._canvas.getBoundingClientRect();
         return {
             x: x - rect.left,
             y: y - rect.top

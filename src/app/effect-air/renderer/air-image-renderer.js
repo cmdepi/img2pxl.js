@@ -18,14 +18,16 @@ export default class AirImageRenderer extends ImageRenderer {
      *
      * @returns {void}
      *
+     * @protected
+     *
      */
-    updatePixel(pixel, imageData) {
+    _updatePixel(pixel, imageData) {
         /**
          *
          * @note Update pixel
          *
          */
-        super.updatePixel(pixel, imageData);
+        super._updatePixel(pixel, imageData);
 
         /**
          *
@@ -64,11 +66,13 @@ export default class AirImageRenderer extends ImageRenderer {
      *
      * @returns {void}
      *
+     * @protected
+     *
      * @note Add alpha value to incorporate a 'trailing effect'
      *
      */
-    clearCanvas() {
+    _clearCanvas() {
         this.context.globalAlpha = 0.1;
-        super.clearCanvas();
+        super._clearCanvas();
     }
 }

@@ -14,22 +14,28 @@ export default class StatefulPixel extends Pixel {
      *
      * @type {Number}
      *
+     * @protected
+     *
      */
-    initX;
+    _initX;
 
     /**
      *
      * @type {Number}
      *
+     * @protected
+     *
      */
-    initY;
+    _initY;
 
     /**
      *
      * @type {{red: Number, green: Number, blue: Number, alpha: Number}}
      *
+     * @protected
+     *
      */
-    initColor;
+    _initColor;
 
     /**
      *
@@ -45,9 +51,9 @@ export default class StatefulPixel extends Pixel {
      */
     constructor(color, x = 0, y = 0, vx = 0, vy = 0, size = 1) {
         super(color, x, y, vx, vy, size);
-        this.initX     = x;
-        this.initY     = y;
-        this.initColor = color;
+        this._initX     = x;
+        this._initY     = y;
+        this._initColor = color;
     }
 
     /**
@@ -58,8 +64,8 @@ export default class StatefulPixel extends Pixel {
      *
      */
     restore() {
-        this.x     = this.initX;
-        this.y     = this.initY;
-        this.color = this.initColor;
+        this.x     = this._initX;
+        this.y     = this._initY;
+        this.color = this._initColor;
     }
 }

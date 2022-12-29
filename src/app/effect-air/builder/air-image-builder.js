@@ -20,8 +20,10 @@ export default class AirImageBuilder extends ImageBuilder {
      *
      * @returns {AirImageRenderer}
      *
+     * @protected
+     *
      */
-    createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
+    _createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
         new AirImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
@@ -31,8 +33,10 @@ export default class AirImageBuilder extends ImageBuilder {
      *
      * @returns {AirImageListener}
      *
+     * @protected
+     *
      */
-    createImageListener() {
+    _createImageListener() {
         return new AirImageListener(this.canvas);
     }
 
@@ -42,8 +46,10 @@ export default class AirImageBuilder extends ImageBuilder {
      *
      * @returns {AirImageProcessor}
      *
+     * @protected
+     *
      */
-    createImageProcessor() {
+    _createImageProcessor() {
         return new AirImageProcessor(this.context, this.image);
     }
 }

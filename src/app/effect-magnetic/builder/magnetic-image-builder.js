@@ -20,8 +20,10 @@ export default class MagneticImageBuilder extends ImageBuilder {
      *
      * @returns {MagneticImageRenderer}
      *
+     * @protected
+     *
      */
-    createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
+    _createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
         new MagneticImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
@@ -31,8 +33,10 @@ export default class MagneticImageBuilder extends ImageBuilder {
      *
      * @returns {MagneticImageListener}
      *
+     * @protected
+     *
      */
-    createImageListener() {
+    _createImageListener() {
         return new MagneticImageListener(this.canvas);
     }
 
@@ -42,8 +46,10 @@ export default class MagneticImageBuilder extends ImageBuilder {
      *
      * @returns {MagneticImageProcessor}
      *
+     * @protected
+     *
      */
-    createImageProcessor() {
+    _createImageProcessor() {
         return new MagneticImageProcessor(this.context, this.image);
     }
 }

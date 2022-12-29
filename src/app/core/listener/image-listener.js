@@ -10,8 +10,10 @@ export default class ImageListener {
      *
      * @type {HTMLCanvasElement}
      *
+     * @protected
+     *
      */
-    canvas;
+    _canvas;
 
     /**
      *
@@ -21,7 +23,7 @@ export default class ImageListener {
      *
      */
     constructor(canvas) {
-        this.canvas = canvas;
+        this._canvas = canvas;
     }
 
     /**

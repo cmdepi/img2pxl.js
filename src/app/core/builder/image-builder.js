@@ -65,9 +65,9 @@ export default class ImageBuilder {
     constructor(image, canvasId, pixelFillStyle = null, canvasBackgroundColor = null) {
         this.#initImage(image);
         this.#initCanvas(canvasId);
-        this.imageProcessor = this.createImageProcessor();
-        this.imageListener  = this.createImageListener();
-        this.imageRenderer  = this.createImageRenderer(pixelFillStyle, canvasBackgroundColor);
+        this.imageProcessor = this._createImageProcessor();
+        this.imageListener  = this._createImageListener();
+        this.imageRenderer  = this._createImageRenderer(pixelFillStyle, canvasBackgroundColor);
     }
 
     /**
@@ -79,10 +79,12 @@ export default class ImageBuilder {
      *
      * @returns {ImageRenderer}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the type of image renderer created
      *
      */
-    createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
+    _createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
         return new ImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
@@ -92,10 +94,12 @@ export default class ImageBuilder {
      *
      * @returns {ImageListener}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the type of image listener created
      *
      */
-    createImageListener() {
+    _createImageListener() {
         return new ImageListener(this.canvas);
     }
 
@@ -105,10 +109,12 @@ export default class ImageBuilder {
      *
      * @returns {ImageProcessor}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the type of image processor created
      *
      */
-    createImageProcessor() {
+    _createImageProcessor() {
         return new ImageProcessor(this.context, this.image);
     }
 

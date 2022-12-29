@@ -11,10 +11,12 @@ import Pixel from '../../core/model/image/particle/pixel.js';
 export default class ImageProcessor {
     /**
      *
-     * {CanvasRenderingContext2D} context
+     * @type {CanvasRenderingContext2D} context
+     *
+     * @protected
      *
      */
-    #context;
+    _context;
 
     /**
      *
@@ -42,7 +44,7 @@ export default class ImageProcessor {
      *
      */
     constructor(context, image, gap = 1) {
-        this.#context = context;
+        this._context = context;
         this.#image   = image;
         this.#gap     = gap;
     }
@@ -67,7 +69,7 @@ export default class ImageProcessor {
          * @note Create image data
          *
          */
-        const imageData = this.#createImageData();
+        const imageData = this._createImageData();
 
         /**
          *
@@ -99,7 +101,7 @@ export default class ImageProcessor {
                      * @note Process pixel
                      *
                      */
-                    pixels.push(this.processPixel(color, x, y));
+                    pixels.push(this._processPixel(color, x, y));
                 }
             }
         }
@@ -122,10 +124,12 @@ export default class ImageProcessor {
      *
      * @returns {Pixel}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the pixel processing
      *
      */
-    processPixel(color, x, y) {
+    _processPixel(color, x, y) {
         return new Pixel(color, x, y);
     }
 
@@ -135,13 +139,15 @@ export default class ImageProcessor {
      *
      * @returns {ImageData}
      *
+     * @protected
+     *
      * @note Get image data and then remove image from canvas
      *
      */
-    #createImageData() {
-        this.#context.drawImage(this.#image, 0, 0, this.#image.width, this.#image.height);
-        const imageData = this.#context.getImageData(0, 0, this.#image.width, this.#image.height);
-        this.#context.clearRect(0, 0, this.#image.width, this.#image.height);
+    _createImageData() {
+        this._context.drawImage(this.#image, 0, 0, this.#image.width, this.#image.height);
+        const imageData = this._context.getImageData(0, 0, this.#image.width, this.#image.height);
+        this._context.clearRect(0, 0, this.#image.width, this.#image.height);
         return imageData;
     }
 }

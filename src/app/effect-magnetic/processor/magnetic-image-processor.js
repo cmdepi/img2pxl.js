@@ -34,8 +34,10 @@ export default class MagneticImageProcessor extends ImageProcessor {
      *
      * @returns {MagneticPixel}
      *
+     * @protected
+     *
      */
-    processPixel(color, x, y) {
+    _processPixel(color, x, y) {
         return new MagneticPixel(color, x, y);
     }
 }

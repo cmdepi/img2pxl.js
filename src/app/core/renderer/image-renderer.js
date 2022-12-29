@@ -8,10 +8,12 @@
 export default class ImageRenderer {
     /**
      *
-     * {CanvasRenderingContext2D} context
+     * @type {CanvasRenderingContext2D} context
+     *
+     * @protected
      *
      */
-    context;
+    _context;
 
     /**
      *
@@ -44,7 +46,7 @@ export default class ImageRenderer {
      *
      */
     constructor(context, pixelFillStyle = null, canvasBackgroundColor = null) {
-        this.context                = context;
+        this._context               = context;
         this.#pixelFillStyle        = pixelFillStyle;
         this.#canvasBackgroundColor = canvasBackgroundColor;
     }
@@ -67,14 +69,14 @@ export default class ImageRenderer {
          * @note Clear canvas
          *
          */
-        this.clearCanvas();
+        this._clearCanvas();
 
         /**
          *
          * @note Save current context drawing state
          *
          */
-        this.context.save();
+        this._context.save();
 
         /**
          *
@@ -82,7 +84,7 @@ export default class ImageRenderer {
          *
          */
         if (this.#pixelFillStyle) {
-            this.context.fillStyle = this.#pixelFillStyle;
+            this._context.fillStyle = this.#pixelFillStyle;
         }
 
         /**
@@ -96,14 +98,14 @@ export default class ImageRenderer {
              * @note Update pixel
              *
              */
-            this.updatePixel(pixels[i], imageData);
+            this._updatePixel(pixels[i], imageData);
 
             /**
              *
              * @note Draw pixel
              *
              */
-            this.drawPixel(pixels[i], imageData);
+            this._drawPixel(pixels[i], imageData);
         }
 
         /**
@@ -111,7 +113,7 @@ export default class ImageRenderer {
          * @note Restore context drawing state
          *
          */
-        this.context.restore();
+        this._context.restore();
     }
 
     /**
@@ -123,11 +125,13 @@ export default class ImageRenderer {
      *
      * @returns {void}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the pixel update process
      * @note The information of the image is provided in case it is desired to do some additional processing for the pixel update process
      *
      */
-    updatePixel(pixel, imageData) {
+    _updatePixel(pixel, imageData) {
         pixel.update();
     }
 
@@ -140,18 +144,20 @@ export default class ImageRenderer {
      *
      * @returns {void}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the drawing of the pixel
      * @note The information of the image is provided in case it is desired to do some additional processing for the pixel drawing
      *
      */
-    drawPixel(pixel, imageData) {
+    _drawPixel(pixel, imageData) {
         /**
          *
          * @note If custom fill style was not provided, then use pixel color information to draw pixel
          *
          */
         if (!this.#pixelFillStyle) {
-            this.context.fillStyle = this.#pixelColorToFillStyle(pixel);
+            this._context.fillStyle = this.#pixelColorToFillStyle(pixel);
         }
 
         /**
@@ -160,9 +166,9 @@ export default class ImageRenderer {
          * @note It is used rectangles instead of circles because drawing circles has performance issues
          *
          */
-        this.context.beginPath();
-        this.context.rect(pixel.x, pixel.y, pixel.size, pixel.size);
-        this.context.fill();
+        this._context.beginPath();
+        this._context.rect(pixel.x, pixel.y, pixel.size, pixel.size);
+        this._context.fill();
     }
 
     /**
@@ -171,13 +177,15 @@ export default class ImageRenderer {
      *
      * @returns {void}
      *
+     * @protected
+     *
      * @note This method was implemented to add the possibility of customizing the clear canvas process
      * @note It is used a fill method instead of a clear method to be able to add some effect (like a 'trailing effect') if it is desired
      *
      */
-    clearCanvas() {
-        this.context.fillStyle = this.#canvasBackgroundColor;
-        this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
+    _clearCanvas() {
+        this._context.fillStyle = this.#canvasBackgroundColor;
+        this._context.fillRect(0, 0, this._context.canvas.width, this._context.canvas.height);
     }
 
     /**

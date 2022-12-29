@@ -56,7 +56,7 @@ export default class MagneticPixel extends StatefulPixel {
     update() {
         this.vx *= this.#magneticForce
         this.vy *= this.#magneticForce
-        this.x  += this.vx + (this.initX - this.x) * this.#magneticForce * 0.3;
-        this.y  += this.vy + (this.initY - this.y) * this.#magneticForce * 0.3;
+        this.x  += this.vx + (this._initX - this.x) * this.#magneticForce * 0.3;
+        this.y  += this.vy + (this._initY - this.y) * this.#magneticForce * 0.3;
     }
 }

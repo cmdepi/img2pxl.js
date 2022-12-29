@@ -35,8 +35,10 @@ export default class AirImageProcessor extends ImageProcessor {
      *
      * @returns {AirPixel}
      *
+     * @protected
+     *
      */
-    processPixel(color, x, y) {
+    _processPixel(color, x, y) {
         const data = Image.addBrightnessToPixelColor(color);
         return new AirPixel(data, x, y);
     }
