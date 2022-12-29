@@ -24,7 +24,7 @@ export default class AirImageBuilder extends ImageBuilder {
      *
      */
     _createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
-        new AirImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
+        return new AirImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
     /**
