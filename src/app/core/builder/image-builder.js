@@ -58,14 +58,14 @@ export default class ImageBuilder {
      *
      * @param {{src: String, width: Number, height: Number}} image
      * @param {String}                                       canvasId
-     * @param {(CanvasGradient|CanvasPattern|String|null)}   pixelsFillStyle
+     * @param {(CanvasGradient|CanvasPattern|String|null)}   pixelFillStyle
      * @param {(CanvasGradient|CanvasPattern|String|null)}   canvasBackgroundColor
      *
      */
-    constructor(image, canvasId, pixelsFillStyle = null, canvasBackgroundColor = null) {
+    constructor(image, canvasId, pixelFillStyle = null, canvasBackgroundColor = null) {
         this.#initImage(image);
         this.#initCanvas(canvasId);
-        this.initImageRenderer(pixelsFillStyle, canvasBackgroundColor);
+        this.initImageRenderer(pixelFillStyle, canvasBackgroundColor);
         this.initImageListener();
         this.initImageProcessor();
     }
@@ -74,7 +74,7 @@ export default class ImageBuilder {
      *
      * Factory method. Init image renderer
      *
-     * @param {(CanvasGradient|CanvasPattern|String|null)} pixelsFillStyle
+     * @param {(CanvasGradient|CanvasPattern|String|null)} pixelFillStyle
      * @param {(CanvasGradient|CanvasPattern|String|null)} canvasBackgroundColor
      *
      * @returns {void}
@@ -82,8 +82,8 @@ export default class ImageBuilder {
      * @note This method was implemented to add the possibility of customizing the type of image renderer created
      *
      */
-    initImageRenderer(pixelsFillStyle, canvasBackgroundColor) {
-        this.imageRenderer = new ImageRenderer(pixelsFillStyle, canvasBackgroundColor);
+    initImageRenderer(pixelFillStyle, canvasBackgroundColor) {
+        this.imageRenderer = new ImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
     /**

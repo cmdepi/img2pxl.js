@@ -20,7 +20,7 @@ export default class ImageRenderer {
      * @note Custom fill style to draw pixels
      *
      */
-    #pixelsFillStyle;
+    #pixelFillStyle;
 
     /**
      *
@@ -39,13 +39,13 @@ export default class ImageRenderer {
      * Constructor
      *
      * @param {CanvasRenderingContext2D}                   context
-     * @param {(CanvasGradient|CanvasPattern|String|null)} pixelsFillStyle
+     * @param {(CanvasGradient|CanvasPattern|String|null)} pixelFillStyle
      * @param {(CanvasGradient|CanvasPattern|String|null)} canvasBackgroundColor
      *
      */
-    constructor(context, pixelsFillStyle = null, canvasBackgroundColor = null) {
+    constructor(context, pixelFillStyle = null, canvasBackgroundColor = null) {
         this.#context               = context;
-        this.#pixelsFillStyle       = pixelsFillStyle;
+        this.#pixelFillStyle        = pixelFillStyle;
         this.#canvasBackgroundColor = canvasBackgroundColor;
     }
 
@@ -81,8 +81,8 @@ export default class ImageRenderer {
          * @note Check if custom fill style was provided to draw pixels
          *
          */
-        if (this.#pixelsFillStyle) {
-            this.#context.fillStyle = this.#pixelsFillStyle;
+        if (this.#pixelFillStyle) {
+            this.#context.fillStyle = this.#pixelFillStyle;
         }
 
         /**
@@ -150,7 +150,7 @@ export default class ImageRenderer {
          * @note If custom fill style was not provided, then use pixel color information to draw pixel
          *
          */
-        if (!this.#pixelsFillStyle) {
+        if (!this.#pixelFillStyle) {
             this.#context.fillStyle = this.#pixelColorToFillStyle(pixel);
         }
 
