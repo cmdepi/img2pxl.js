@@ -18,6 +18,13 @@ export default class ImageProcessor {
 
     /**
      *
+     * @type {HTMLImageElement}
+     *
+     */
+    #image;
+
+    /**
+     *
      * @type {Number}
      *
      * @note This attribute is used to have a flexibility about the pixels processed and effect performance
@@ -30,24 +37,24 @@ export default class ImageProcessor {
      * Constructor
      *
      * @param {CanvasRenderingContext2D} context
+     * @param {HTMLImageElement}         image
      * @param {Number}                   gap
      *
      */
-    constructor(context, gap = 1) {
+    constructor(context, image, gap = 1) {
         this.#context = context;
+        this.#image   = image;
         this.#gap     = gap;
     }
 
     /**
      *
-     * Process image data to create related pixels
-     *
-     * @param {HTMLImageElement} image
+     * Process image
      *
      * @returns {{imageData: ImageData, pixels: Pixel[]}}
      *
      */
-    process(image) {
+    process() {
         /**
          *
          * @note Init pixels
@@ -57,10 +64,10 @@ export default class ImageProcessor {
 
         /**
          *
-         * @note Init image data
+         * @note Create image data
          *
          */
-        const imageData = this.#initImageData(image);
+        const imageData = this.#createImageData();
 
         /**
          *
@@ -124,19 +131,17 @@ export default class ImageProcessor {
 
     /**
      *
-     * Init image data
-     *
-     * @param {HTMLImageElement} image
+     * Create image data
      *
      * @returns {ImageData}
      *
      * @note Get image data and then remove image from canvas
      *
      */
-    #initImageData(image) {
-        this.#context.drawImage(image, 0, 0, image.width, image.height);
-        const imageData = this.#context.getImageData(0, 0, image.width, image.height);
-        this.#context.clearRect(0, 0, image.width, image.height);
+    #createImageData() {
+        this.#context.drawImage(this.#image, 0, 0, this.#image.width, this.#image.height);
+        const imageData = this.#context.getImageData(0, 0, this.#image.width, this.#image.height);
+        this.#context.clearRect(0, 0, this.#image.width, this.#image.height);
         return imageData;
     }
 }
