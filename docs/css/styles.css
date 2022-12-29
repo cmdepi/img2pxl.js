@@ -1,0 +1,30 @@
+/**
+ *
+ * @description Styles
+ *
+ * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
+ *
+ */
+
+/**
+ *
+ * @note General styles
+ *
+ */
+body {
+    margin : 0;
+    padding: 0;
+}
+
+/**
+ *
+ * @note Move canvas to center
+ *
+ */
+.pixel-pool {
+    display        : flex;
+    justify-content: center;
+    align-items    : center;
+    width          : 100vw;
+    height         : 100vh;
+}

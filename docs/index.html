@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<!--
+/**
+ *
+ * @description Index
+ *
+ * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
+ *
+ */
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Messias</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <!--
+  /**
+   *
+   * @note Init canvas container
+   *
+   */
+  -->
+  <div class="pixel-pool">
+    <!--
+    /**
+     *
+     * @note Init canvas
+     *
+     */
+    -->
+    <canvas id='canvas'></canvas>
+  </div>
+
+  <!--
+  /**
+   *
+   * @note Init image2pixel.js effect
+   *
+   */
+  -->
+  <script type="module">
+    import Bootstrap from './js/bootstrap.js';
+    const bootstrap                     = new Bootstrap();
+    const backgroundColor               = '#000';
+    document.body.style.backgroundColor = backgroundColor;
+    bootstrap.run(
+      {
+        src: 'images/messias.png',
+        width: 540,
+        height: 405
+      },
+      'canvas',
+      backgroundColor
+    );
+  </script>
+</body>
+</html>
