@@ -65,51 +65,51 @@ export default class ImageBuilder {
     constructor(image, canvasId, pixelFillStyle = null, canvasBackgroundColor = null) {
         this.#initImage(image);
         this.#initCanvas(canvasId);
-        this.initImageRenderer(pixelFillStyle, canvasBackgroundColor);
-        this.initImageListener();
-        this.initImageProcessor();
+        this.imageProcessor = this.createImageProcessor();
+        this.imageListener  = this.createImageListener();
+        this.imageRenderer  = this.createImageRenderer(pixelFillStyle, canvasBackgroundColor);
     }
 
     /**
      *
-     * Factory method. Init image renderer
+     * Factory method. Create image renderer
      *
      * @param {(CanvasGradient|CanvasPattern|String|null)} pixelFillStyle
      * @param {(CanvasGradient|CanvasPattern|String|null)} canvasBackgroundColor
      *
-     * @returns {void}
+     * @returns {ImageRenderer}
      *
      * @note This method was implemented to add the possibility of customizing the type of image renderer created
      *
      */
-    initImageRenderer(pixelFillStyle, canvasBackgroundColor) {
-        this.imageRenderer = new ImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
+    createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
+        return new ImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
     /**
      *
-     * Factory method. Init image listener
+     * Factory method. Create image listener
      *
-     * @returns {void}
+     * @returns {ImageListener}
      *
      * @note This method was implemented to add the possibility of customizing the type of image listener created
      *
      */
-    initImageListener() {
-        this.imageListener = new ImageListener(this.canvas);
+    createImageListener() {
+        return new ImageListener(this.canvas);
     }
 
     /**
      *
-     * Factory method. Init image processor
+     * Factory method. Create image processor
      *
-     * @returns {void}
+     * @returns {ImageProcessor}
      *
      * @note This method was implemented to add the possibility of customizing the type of image processor created
      *
      */
-    initImageProcessor() {
-        this.imageProcessor = new ImageProcessor(this.context);
+    createImageProcessor() {
+        return new ImageProcessor(this.context, this.image);
     }
 
     /**
