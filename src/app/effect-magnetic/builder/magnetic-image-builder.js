@@ -24,7 +24,7 @@ export default class MagneticImageBuilder extends ImageBuilder {
      *
      */
     _createImageRenderer(pixelFillStyle, canvasBackgroundColor) {
-        new MagneticImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
+        return new MagneticImageRenderer(this.context, pixelFillStyle, canvasBackgroundColor);
     }
 
     /**
