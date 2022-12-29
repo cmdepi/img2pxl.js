@@ -11,7 +11,7 @@ export default class ImageRenderer {
      * {CanvasRenderingContext2D} context
      *
      */
-    #context;
+    context;
 
     /**
      *
@@ -44,7 +44,7 @@ export default class ImageRenderer {
      *
      */
     constructor(context, pixelFillStyle = null, canvasBackgroundColor = null) {
-        this.#context               = context;
+        this.context                = context;
         this.#pixelFillStyle        = pixelFillStyle;
         this.#canvasBackgroundColor = canvasBackgroundColor;
     }
@@ -74,7 +74,7 @@ export default class ImageRenderer {
          * @note Save current context drawing state
          *
          */
-        this.#context.save();
+        this.context.save();
 
         /**
          *
@@ -82,7 +82,7 @@ export default class ImageRenderer {
          *
          */
         if (this.#pixelFillStyle) {
-            this.#context.fillStyle = this.#pixelFillStyle;
+            this.context.fillStyle = this.#pixelFillStyle;
         }
 
         /**
@@ -111,7 +111,7 @@ export default class ImageRenderer {
          * @note Restore context drawing state
          *
          */
-        this.#context.restore();
+        this.context.restore();
     }
 
     /**
@@ -151,7 +151,7 @@ export default class ImageRenderer {
          *
          */
         if (!this.#pixelFillStyle) {
-            this.#context.fillStyle = this.#pixelColorToFillStyle(pixel);
+            this.context.fillStyle = this.#pixelColorToFillStyle(pixel);
         }
 
         /**
@@ -160,9 +160,9 @@ export default class ImageRenderer {
          * @note It is used rectangles instead of circles because drawing circles has performance issues
          *
          */
-        this.#context.beginPath();
-        this.#context.rect(pixel.x, pixel.y, pixel.size, pixel.size);
-        this.#context.fill();
+        this.context.beginPath();
+        this.context.rect(pixel.x, pixel.y, pixel.size, pixel.size);
+        this.context.fill();
     }
 
     /**
@@ -176,8 +176,8 @@ export default class ImageRenderer {
      *
      */
     clearCanvas() {
-        this.#context.fillStyle = this.#canvasBackgroundColor;
-        this.#context.fillRect(0, 0, this.#context.canvas.width, this.#context.canvas.height);
+        this.context.fillStyle = this.#canvasBackgroundColor;
+        this.context.fillRect(0, 0, this.context.canvas.width, this.context.canvas.height);
     }
 
     /**

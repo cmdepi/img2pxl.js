@@ -49,4 +49,17 @@ export default class StatefulPixel extends Pixel {
         this.initY     = y;
         this.initColor = color;
     }
+
+    /**
+     *
+     * Restore initial values
+     *
+     * @returns {void}
+     *
+     */
+    restore() {
+        this.x     = this.initX;
+        this.y     = this.initY;
+        this.color = this.initColor;
+    }
 }
