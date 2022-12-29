@@ -42,7 +42,7 @@ export default class AirImageRenderer extends ImageRenderer {
          * @note Check if pixel new position is outside the image (the verification is carried out considering the alpha value of the image)
          *
          */
-        if (pixel.x < 0 || pixel.x >= this.context.canvas.width || pixel.y >= this.context.canvas.height || color.alpha === 0) {
+        if (pixel.x < 0 || pixel.x >= this._context.canvas.width || pixel.y >= this._context.canvas.height || color.alpha === 0) {
             /**
              *
              * @note Restore pixel initial values if its new position is outside the image
@@ -72,7 +72,7 @@ export default class AirImageRenderer extends ImageRenderer {
      *
      */
     _clearCanvas() {
-        this.context.globalAlpha = 0.1;
+        this._context.globalAlpha = 0.1;
         super._clearCanvas();
     }
 }
