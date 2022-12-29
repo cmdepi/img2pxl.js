@@ -42,10 +42,11 @@ export default class Image {
      * @returns {Number}
      *
      * @note The y coordinate of a pixel indicates in what row this pixel is (every row has a length compound of the item size - pixel elements - multiplied by the image width)
+     * @note The coordinates of the pixel could be in floating numbers and in order to work with them in the grid of pixels that make up the image, it is necessary to convert them to integers
      *
      */
     static getImagePixelRow(y, imageWidth, itemSize) {
-        return y * itemSize * imageWidth;
+        return Math.floor(y) * itemSize * imageWidth;
     }
 
     /**
@@ -58,9 +59,10 @@ export default class Image {
      * @returns {Number}
      *
      * @note The x coordinate of a pixel indicates in what column this pixel is (every column has a length determined by the item size)
+     * @note The coordinates of the pixel could be in floating numbers and in order to work with them in the grid of pixels that make up the image, it is necessary to convert them to integers
      *
      */
     static getImagePixelCol(x, itemSize) {
-        return x * itemSize;
+        return Math.floor(x) * itemSize;
     }
 }
