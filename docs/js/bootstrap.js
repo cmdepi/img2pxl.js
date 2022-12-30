@@ -5,7 +5,7 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import Image2Pixel         from '../../src/image2pixel.js';
+import Image2Pixel         from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/image2pixel.js';
 import RandomObjectManager from './bootstrap/random-object-manager.js';
 
 export default class Bootstrap {

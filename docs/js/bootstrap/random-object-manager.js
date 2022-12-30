@@ -5,12 +5,12 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import MagneticImageBuilder          from '../../../src/app/effect-magnetic/builder/image-builder/magnetic-image-builder.js';
-import MagneticGrayscaleImageBuilder from '../../../src/app/effect-magnetic/builder/image-builder/magnetic-image-builder/magnetic-grayscale-image-builder.js';
-import MagneticInvertImageBuilder    from '../../../src/app/effect-magnetic/builder/image-builder/magnetic-image-builder/magnetic-invert-image-builder.js';
-import AirImageBuilder               from '../../../src/app/effect-air/builder/image-builder/air-image-builder.js';
-import AirGrayscaleImageBuilder      from '../../../src/app/effect-air/builder/image-builder/air-image-builder/air-grayscale-image-builder.js';
-import AirInvertImageBuilder         from '../../../src/app/effect-air/builder/image-builder/air-image-builder/air-invert-image-builder.js';
+import MagneticImageBuilder          from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-magnetic/builder/image-builder/magnetic-image-builder.js';
+import MagneticGrayscaleImageBuilder from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-magnetic/builder/image-builder/magnetic-image-builder/magnetic-grayscale-image-builder.js';
+import MagneticInvertImageBuilder    from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-magnetic/builder/image-builder/magnetic-image-builder/magnetic-invert-image-builder.js';
+import AirImageBuilder               from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-air/builder/image-builder/air-image-builder.js';
+import AirGrayscaleImageBuilder      from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-air/builder/image-builder/air-image-builder/air-grayscale-image-builder.js';
+import AirInvertImageBuilder         from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-air/builder/image-builder/air-image-builder/air-invert-image-builder.js';
 
 export default class RandomObjectManager {
     /**
