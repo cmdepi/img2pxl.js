@@ -126,20 +126,22 @@ export default class RandomObjectManager {
 
     /**
      *
-     * Update
+     * Create from effect
      *
-     * @param {String} effect
-     * @param {String} mode
+     * @param {String}                                            effect
+     * @param {String|null}                                       mode
+     * @param {{src: String, width: Number, height: Number}|null} idol
      *
      * @returns {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)}
      *
      */
-    update(effect, mode) {
+    createFromEffect(effect, mode = null, idol = null) {
         this.#effect = effect;
-        this.#mode   = mode;
+        this.#mode   = mode ? mode : this.#mode;
+        this.#idol   = idol ? idol : this.#idol;
         return this.#createBuilder();
     }
-    
+
     /**
      *
      * Create builder

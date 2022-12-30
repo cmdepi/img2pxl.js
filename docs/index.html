@@ -40,9 +40,9 @@
          */
         -->
         <nav class="menu">
-            <a class="menu-item" href="#">Air effect</a>
-            <a class="menu-item" href="#">Magnetic effect</a>
-            <a class="menu-item" href="https://github.com/cmdepi/image2pixel.js" target="_blank">Source code</a>
+            <a id="air_effect_btn"      class="menu-item" href="#">Air effect</a>
+            <a id="magnetic_effect_btn" class="menu-item" href="#">Magnetic effect</a>
+            <a id="source_code_btn"     class="menu-item" href="https://github.com/cmdepi/image2pixel.js" target="_blank">Source code</a>
         </nav>
     </div>
 
@@ -66,8 +66,7 @@
     -->
     <script type="module">
     import Bootstrap from './js/bootstrap.js';
-    const bootstrap = new Bootstrap('canvas', '#000');
-    bootstrap.run();
+    new Bootstrap('canvas', '#000');
     </script>
 </body>
 </html>

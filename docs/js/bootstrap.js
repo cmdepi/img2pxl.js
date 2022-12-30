@@ -34,53 +34,22 @@ export default class Bootstrap {
     constructor(canvasId, canvasBackgroundColor) {
         this.#initDocument(canvasBackgroundColor);
         this.#initRandomObjectManager(canvasId, canvasBackgroundColor);
+        this.#initEventListeners();
+        this.#initAnimation();
     }
 
     /**
      *
      * Run
      *
-     * @param {(String|null)} effect
-     * @param {(String|null)} mode
+     * @param {String} effect
      *
      * @returns {void}
      *
      */
-    run(effect = null, mode = null) {
-        /**
-         *
-         * @note Check if there is an animation already running
-         *
-         */
-        if (this.#animation) {
-            /**
-             *
-             * @note Cancel animation
-             *
-             */
-            this.#animation.cancelAnimation();
-        }
-
-        /**
-         *
-         * @note Check if it is necessary to update the animation
-         *
-         */
-        if (effect && mode) {
-            /**
-             *
-             * @note Update animation parameters
-             *
-             */
-            this.#randomObjectManager.update(effect, mode);
-        }
-
-        /**
-         *
-         * @note Init animation
-         *
-         */
-        this.#initAnimation();
+    run(effect) {
+        this.#animation.cancelAnimation();
+        this.#createAnimation(this.#randomObjectManager.createFromEffect(effect));
     }
 
     /**
@@ -91,7 +60,27 @@ export default class Bootstrap {
      *
      */
     #initAnimation() {
-        this.#animation = new Image2Pixel(this.#randomObjectManager.create());
+        this.#createAnimation(this.#randomObjectManager.create());
+    }
+
+    /**
+     *
+     * Init event listeners
+     *
+     * @returns {void}
+     *
+     */
+    #initEventListeners() {
+        const airEffectBtn      = document.getElementById('air_effect_btn');
+        const magneticEffectBtn = document.getElementById('magnetic_effect_btn');
+        airEffectBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.run('air');
+        })
+        magneticEffectBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            this.run('magnetic');
+        })
     }
 
     /**
@@ -119,6 +108,19 @@ export default class Bootstrap {
      */
     #initDocument(canvasBackgroundColor) {
         document.body.style.backgroundColor = canvasBackgroundColor;
+    }
+
+    /**
+     *
+     * Create animation
+     *
+     * @param {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)} imageBuilder
+     *
+     * @returns {void}
+     *
+     */
+    #createAnimation(imageBuilder) {
+        this.#animation = new Image2Pixel(imageBuilder);
     }
 }
 
