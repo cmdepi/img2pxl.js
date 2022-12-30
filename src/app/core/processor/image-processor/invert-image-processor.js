@@ -5,6 +5,7 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
+import Image          from '../../../../util/image.js';
 import ImageProcessor from '../image-processor.js';
 
 export default class InvertImageProcessor extends ImageProcessor {
@@ -22,8 +23,9 @@ export default class InvertImageProcessor extends ImageProcessor {
      *
      */
     _getPixelColor(imageData, x, y) {
-        const color = super._getPixelColor(imageData, x, y);
-        return this.#convertColorToInvert(color);
+        const color = this.#convertColorToInvert(super._getPixelColor(imageData, x, y));
+        Image.updateImageDataColor(imageData, x, y, color);
+        return color;
     }
 
     /**
