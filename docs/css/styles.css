@@ -92,3 +92,6 @@ body {
     justify-content: center;
     align-items    : center;
 }
+.content canvas {
+    border: 1px solid #fff;
+}
