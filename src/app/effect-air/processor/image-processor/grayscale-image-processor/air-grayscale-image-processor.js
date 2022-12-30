@@ -5,9 +5,9 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import Image                   from '../../util/image.js';
-import AirPixel                from '../../model/image/item/particle/pixel/air-pixel.js';
-import GrayscaleImageProcessor from '../../../core/processor/image-processor/grayscale-image-processor.js';
+import Image                   from '../../../util/image.js';
+import AirPixel                from '../../../model/image/item/particle/pixel/air-pixel.js';
+import GrayscaleImageProcessor from '../../../../core/processor/image-processor/grayscale-image-processor.js';
 
 export default class AirGrayscaleImageProcessor extends GrayscaleImageProcessor {
     /**

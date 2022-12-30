@@ -5,8 +5,8 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import MagneticPixel           from '../../model/image/item/particle/pixel/magnetic-pixel.js';
-import GrayscaleImageProcessor from '../../../core/processor/image-processor/grayscale-image-processor.js';
+import MagneticPixel           from '../../../model/image/item/particle/pixel/magnetic-pixel.js';
+import GrayscaleImageProcessor from '../../../../core/processor/image-processor/grayscale-image-processor.js';
 
 export default class MagneticGrayscaleImageProcessor extends GrayscaleImageProcessor {
     /**

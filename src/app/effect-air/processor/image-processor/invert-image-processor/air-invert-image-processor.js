@@ -5,9 +5,9 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import Image                from '../../util/image.js';
-import AirPixel             from '../../model/image/item/particle/pixel/air-pixel.js';
-import InvertImageProcessor from '../../../core/processor/image-processor/invert-image-processor.js';
+import Image                from '../../../util/image.js';
+import AirPixel             from '../../../model/image/item/particle/pixel/air-pixel.js';
+import InvertImageProcessor from '../../../../core/processor/image-processor/invert-image-processor.js';
 
 export default class AirInvertImageProcessor extends InvertImageProcessor {
     /**
