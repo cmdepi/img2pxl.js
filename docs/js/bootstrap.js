@@ -5,7 +5,7 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import AirImageBuilder from '../../src/app/effect-air/builder/air-image-builder.js';
+import AirImageBuilder from '../../src/app/effect-air/builder/image-builder/air-image-builder.js';
 import Image2Pixel     from '../../src/image2pixel.js';
 
 export default class Bootstrap {

@@ -5,8 +5,8 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import Image         from '../util/image.js'
-import ImageRenderer from '../../core/renderer/image-renderer.js';
+import Image         from '../../util/image.js'
+import ImageRenderer from '../../../core/renderer/image-renderer.js';
 
 export default class AirImageRenderer extends ImageRenderer {
     /**

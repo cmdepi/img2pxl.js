@@ -5,7 +5,7 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import ImageListener from '../../core/listener/image-listener.js';
+import ImageListener from '../../../core/listener/image-listener.js';
 
 export default class MagneticImageListener extends ImageListener {
     /**

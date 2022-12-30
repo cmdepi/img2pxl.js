@@ -5,10 +5,10 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import ImageBuilder           from '../../core/builder/image-builder.js';
-import MagneticImageProcessor from '../processor/magnetic-image-processor.js';
-import MagneticImageListener  from '../listener/magnetic-image-listener.js';
-import MagneticImageRenderer  from '../renderer/magnetic-image-renderer.js';
+import ImageBuilder           from '../../../core/builder/image-builder.js';
+import MagneticImageProcessor from '../../processor/image-processor/magnetic-image-processor.js';
+import MagneticImageListener  from '../../listener/image-listener/magnetic-image-listener.js';
+import MagneticImageRenderer  from '../../renderer/image-renderer/magnetic-image-renderer.js';
 
 export default class MagneticImageBuilder extends ImageBuilder {
     /**

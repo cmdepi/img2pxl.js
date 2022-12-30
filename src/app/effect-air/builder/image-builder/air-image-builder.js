@@ -5,10 +5,10 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import ImageBuilder      from '../../core/builder/image-builder.js';
-import AirImageProcessor from '../processor/air-image-processor.js';
-import AirImageListener  from '../listener/air-image-listener.js';
-import AirImageRenderer  from '../renderer/air-image-renderer.js';
+import ImageBuilder      from '../../../core/builder/image-builder.js';
+import AirImageProcessor from '../../processor/image-processor/air-image-processor.js';
+import AirImageListener  from '../../listener/image-listener/air-image-listener.js';
+import AirImageRenderer  from '../../renderer/image-renderer/air-image-renderer.js';
 
 export default class AirImageBuilder extends ImageBuilder {
     /**
