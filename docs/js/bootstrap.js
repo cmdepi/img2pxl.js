@@ -40,10 +40,13 @@ export default class Bootstrap {
      *
      * Run
      *
+     * @param {(String|null)} effect
+     * @param {(String|null)} mode
+     *
      * @returns {void}
      *
      */
-    run() {
+    run(effect = null, mode = null) {
         /**
          *
          * @note Check if there is an animation already running
@@ -56,6 +59,20 @@ export default class Bootstrap {
              *
              */
             this.#animation.cancelAnimation();
+        }
+
+        /**
+         *
+         * @note Check if it is necessary to update the animation
+         *
+         */
+        if (effect && mode) {
+            /**
+             *
+             * @note Update animation parameters
+             *
+             */
+            this.#randomObjectManager.update(effect, mode);
         }
 
         /**

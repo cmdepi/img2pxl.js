@@ -15,6 +15,27 @@ import AirInvertImageBuilder         from '../../../src/app/effect-air/builder/i
 export default class RandomObjectManager {
     /**
      *
+     * @type {String}
+     *
+     */
+    #effect;
+
+    /**
+     *
+     * @note {String}
+     *
+     */
+    #mode;
+
+    /**
+     *
+     * @type {{src: String, width: Number, height: Number}}
+     *
+     */
+    #idol;
+
+    /**
+     *
      * @type {String[]}
      *
      */
@@ -97,41 +118,53 @@ export default class RandomObjectManager {
      *
      */
     create() {
-        const effect = this.#getRandomEffect();
-        const mode   = this.#getRandomMode();
-        const idol   = this.#getRandomIdol();
-        return this.#createBuilder(effect, mode, idol);
+        this.#effect = this.#getRandomEffect();
+        this.#mode   = this.#getRandomMode();
+        this.#idol   = this.#getRandomIdol();
+        return this.#createBuilder();
     }
 
     /**
      *
-     * Create builder
+     * Update
      *
-     * @param {String}                                       effect
-     * @param {String}                                       mode
-     * @param {{src: String, width: Number, height: Number}} idol
+     * @param {String} effect
+     * @param {String} mode
      *
      * @returns {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)}
      *
      */
-    #createBuilder(effect, mode, idol) {
-        if (effect === 'magnetic' && mode === 'normal') {
-            return new MagneticImageBuilder(idol, this.#canvasId, null, this.#canvasBackgroundColor);
+    update(effect, mode) {
+        this.#effect = effect;
+        this.#mode   = mode;
+        return this.#createBuilder();
+    }
+    
+    /**
+     *
+     * Create builder
+     *
+     * @returns {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)}
+     *
+     */
+    #createBuilder() {
+        if (this.#effect === 'magnetic' && this.#mode === 'normal') {
+            return new MagneticImageBuilder(this.#idol, this.#canvasId, null, this.#canvasBackgroundColor);
         }
-        if (effect === 'magnetic' && mode === 'grayscale') {
-            return new MagneticGrayscaleImageBuilder(idol, this.#canvasId, null, this.#canvasBackgroundColor);
+        if (this.#effect === 'magnetic' && this.#mode === 'grayscale') {
+            return new MagneticGrayscaleImageBuilder(this.#idol, this.#canvasId, null, this.#canvasBackgroundColor);
         }
-        if (effect === 'magnetic' && mode === 'invert') {
-            return new MagneticInvertImageBuilder(idol, this.#canvasId, null, this.#canvasBackgroundColor);
+        if (this.#effect === 'magnetic' && this.#mode === 'invert') {
+            return new MagneticInvertImageBuilder(this.#idol, this.#canvasId, null, this.#canvasBackgroundColor);
         }
-        if (effect === 'air' && mode === 'normal') {
-            return new AirImageBuilder(idol, this.#canvasId, null, this.#canvasBackgroundColor);
+        if (this.#effect === 'air' && this.#mode === 'normal') {
+            return new AirImageBuilder(this.#idol, this.#canvasId, null, this.#canvasBackgroundColor);
         }
-        if (effect === 'air' && mode === 'grayscale') {
-            return new AirGrayscaleImageBuilder(idol, this.#canvasId, null, this.#canvasBackgroundColor);
+        if (this.#effect === 'air' && this.#mode === 'grayscale') {
+            return new AirGrayscaleImageBuilder(this.#idol, this.#canvasId, null, this.#canvasBackgroundColor);
         }
-        if (effect === 'air' && mode === 'invert') {
-            return new AirInvertImageBuilder(idol, this.#canvasId, null, this.#canvasBackgroundColor);
+        if (this.#effect === 'air' && this.#mode === 'invert') {
+            return new AirInvertImageBuilder(this.#idol, this.#canvasId, null, this.#canvasBackgroundColor);
         }
     }
 
