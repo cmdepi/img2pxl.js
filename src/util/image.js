@@ -10,6 +10,27 @@
 export default class Image {
     /**
      *
+     * Update image data color
+     *
+     * @param {ImageData}                                                 imageData
+     * @param {Number}                                                    x
+     * @param {Number}                                                    y
+     * @param {{red: Number, green: Number, blue: Number, alpha: Number}} color
+     *
+     * @returns {void}
+     *
+     */
+    static updateImageDataColor(imageData, x, y, color) {
+        const row = this.getImagePixelRow(y, imageData.width);
+        const col = this.getImagePixelCol(x);
+        imageData.data[row + col]     = color.red;
+        imageData.data[row + col + 1] = color.green;
+        imageData.data[row + col + 2] = color.blue;
+        imageData.data[row + col + 3] = color.alpha;
+    }
+
+    /**
+     *
      * Get colors from image data using image pixel coordinates
      *
      * @param {ImageData} imageData
@@ -20,9 +41,8 @@ export default class Image {
      *
      */
     static getImagePixelColorsFromImageData(imageData, x, y) {
-        const itemSize = 4;
-        const row      = this.getImagePixelRow(y, imageData.width, itemSize);
-        const col      = this.getImagePixelCol(x, itemSize);
+        const row = this.getImagePixelRow(y, imageData.width);
+        const col = this.getImagePixelCol(x);
         return {
             red  : imageData.data[row + col],
             green: imageData.data[row + col + 1],
@@ -37,16 +57,15 @@ export default class Image {
      *
      * @param {Number} y
      * @param {Number} imageWidth
-     * @param {Number} itemSize
      *
      * @returns {Number}
      *
-     * @note The y coordinate of a pixel indicates in what row this pixel is (every row has a length compound of the item size - pixel elements - multiplied by the image width)
+     * @note The y coordinate of a pixel indicates in what row this pixel is (every row has a length compound of the pixel elements - 4: red, green, blue, alpha - multiplied by the image width)
      * @note The coordinates of the pixel could be in floating numbers and in order to work with them in the grid of pixels that make up the image, it is necessary to convert them to integers
      *
      */
-    static getImagePixelRow(y, imageWidth, itemSize) {
-        return Math.floor(y) * itemSize * imageWidth;
+    static getImagePixelRow(y, imageWidth) {
+        return Math.floor(y) * 4 * imageWidth;
     }
 
     /**
@@ -54,15 +73,14 @@ export default class Image {
      * Get image pixel column from its x coordinate
      *
      * @param {Number} x
-     * @param {Number} itemSize
      *
      * @returns {Number}
      *
-     * @note The x coordinate of a pixel indicates in what column this pixel is (every column has a length determined by the item size)
+     * @note The x coordinate of a pixel indicates in what column this pixel is (every column has a length determined by the pixel elements - 4: red, green, blue, alpha)
      * @note The coordinates of the pixel could be in floating numbers and in order to work with them in the grid of pixels that make up the image, it is necessary to convert them to integers
      *
      */
-    static getImagePixelCol(x, itemSize) {
-        return Math.floor(x) * itemSize;
+    static getImagePixelCol(x) {
+        return Math.floor(x) * 4;
     }
 }
