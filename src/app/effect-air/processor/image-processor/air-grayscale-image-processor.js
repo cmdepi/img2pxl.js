@@ -1,15 +1,15 @@
 /**
  *
- * @description Air image processor
+ * @description Air grayscale image processor
  *
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import Image          from '../../util/image.js';
-import AirPixel       from '../../model/image/item/particle/pixel/air-pixel.js';
-import ImageProcessor from '../../../core/processor/image-processor.js';
+import Image                   from '../../util/image.js';
+import AirPixel                from '../../model/image/item/particle/pixel/air-pixel.js';
+import GrayscaleImageProcessor from '../../../core/processor/image-processor/grayscale-image-processor.js';
 
-export default class AirImageProcessor extends ImageProcessor {
+export default class AirGrayscaleImageProcessor extends GrayscaleImageProcessor {
     /**
      *
      * Process pixel
