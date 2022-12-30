@@ -11,21 +11,6 @@ import MagneticPixel  from '../../model/image/item/particle/pixel/magnetic-pixel
 export default class MagneticImageProcessor extends ImageProcessor {
     /**
      *
-     * Constructor
-     *
-     * @param {CanvasRenderingContext2D} context
-     * @param {HTMLImageElement}         image
-     * @param {Number}                   gap
-     *
-     * @note Update default gap value. This magnetic effect does not need a full resolution image
-     *
-     */
-    constructor(context, image, gap = 2) {
-        super(context, image, gap);
-    }
-
-    /**
-     *
      * Process pixel
      *
      * @param {{red: Number, green: Number, blue: Number, alpha: Number}} color

@@ -48,8 +48,10 @@ export default class MagneticImageBuilder extends ImageBuilder {
      *
      * @protected
      *
+     * @note This magnetic effect does not need a full resolution image, that is way the gap is set to 2
+     *
      */
     _createImageProcessor() {
-        return new MagneticImageProcessor(this.context, this.image);
+        return new MagneticImageProcessor(this.context, this.image, 2);
     }
 }
