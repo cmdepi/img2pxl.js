@@ -21,6 +21,6 @@ export default class AirGrayscaleImageBuilder extends AirImageBuilder {
      *
      */
     _createImageProcessor() {
-        return new AirGrayscaleImageProcessor(this.context, this.image, 3);
+        return new AirGrayscaleImageProcessor(this.context, this.image, 6);
     }
 }

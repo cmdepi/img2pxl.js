@@ -21,6 +21,6 @@ export default class AirInvertImageBuilder extends AirImageBuilder {
      *
      */
     _createImageProcessor() {
-        return new AirInvertImageProcessor(this.context, this.image, 3);
+        return new AirInvertImageProcessor(this.context, this.image, 6);
     }
 }
