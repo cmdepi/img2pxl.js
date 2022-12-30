@@ -85,10 +85,10 @@ export default class ImageProcessor {
             for (let x = 0; x < imageData.width; x += this.#gap) {
                 /**
                  *
-                 * @note Get pixel color
+                 * @note Process pixel color
                  *
                  */
-                const color = this._getPixelColor(imageData, x, y);
+                const color = this._processPixelColor(imageData, x, y);
 
                 /**
                  *
@@ -116,7 +116,7 @@ export default class ImageProcessor {
 
     /**
      *
-     * Get pixel color
+     * Process pixel color
      *
      * @param {ImageData} imageData
      * @param {Number}    x
@@ -129,7 +129,7 @@ export default class ImageProcessor {
      * @note This method was implemented to add the possibility of customizing the color of the pixel
      *
      */
-    _getPixelColor(imageData, x, y) {
+    _processPixelColor(imageData, x, y) {
         return Image.getImagePixelColorsFromImageData(imageData, x, y);
     }
 

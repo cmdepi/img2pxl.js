@@ -11,7 +11,7 @@ import ImageProcessor from '../image-processor.js';
 export default class GrayscaleImageProcessor extends ImageProcessor {
     /**
      *
-     * Get pixel color
+     * Process pixel color
      *
      * @param {ImageData} imageData
      * @param {Number}    x
@@ -22,8 +22,8 @@ export default class GrayscaleImageProcessor extends ImageProcessor {
      * @protected
      *
      */
-    _getPixelColor(imageData, x, y) {
-        const color = this.#convertColorToGrayscale(super._getPixelColor(imageData, x, y));
+    _processPixelColor(imageData, x, y) {
+        const color = this.#convertColorToGrayscale(super._processPixelColor(imageData, x, y));
         Image.updateImageDataColor(imageData, x, y, color);
         return color;
     }
