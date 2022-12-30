@@ -15,6 +15,13 @@ export default class Image2Pixel {
 
     /**
      *
+     * @type {(Number|null)}
+     *
+     */
+    #animationId = null;
+
+    /**
+     *
      * Constructor
      *
      * @param {ImageBuilder} imageBuilder
@@ -23,6 +30,19 @@ export default class Image2Pixel {
     constructor(imageBuilder) {
         this.#imageBuilder = imageBuilder;
         this.#run();
+    }
+
+    /**
+     *
+     * Cancel animation
+     *
+     * @returns {void}
+     *
+     */
+    cancelAnimation() {
+        if (this.#animationId) {
+            cancelAnimationFrame(this.#animationId);
+        }
     }
 
     /**
@@ -82,7 +102,7 @@ export default class Image2Pixel {
      */
     #animate(pixels, imageData) {
         this.#imageBuilder.imageRenderer.render(pixels, imageData);
-        requestAnimationFrame(this.#animate.bind(this, pixels, imageData));
+        this.#animationId = requestAnimationFrame(this.#animate.bind(this, pixels, imageData));
     }
 
     /**
