@@ -21,6 +21,6 @@ export default class MagneticGrayscaleImageBuilder extends MagneticImageBuilder 
      *
      */
     _createImageProcessor() {
-        return new MagneticGrayscaleImageProcessor(this.context, this.image, 2);
+        return new MagneticGrayscaleImageProcessor(this.context, this.image, 4);
     }
 }
