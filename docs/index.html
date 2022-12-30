@@ -10,50 +10,74 @@
 -->
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Messias</title>
-  <link rel="stylesheet" href="css/styles.css">
+    <meta charset="UTF-8">
+    <title>image2pixel.js</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!--
-  /**
-   *
-   * @note Init canvas container
-   *
-   */
-  -->
-  <div class="pixel-pool">
     <!--
     /**
      *
-     * @note Init canvas
+     * @note Header
      *
      */
     -->
-    <canvas id='canvas'></canvas>
-  </div>
+    <div class="header">
+        <!--
+        /**
+         *
+         * @note Title
+         *
+         */
+        -->
+        <h1 class="title">image2pixel.js</h1>
 
-  <!--
-  /**
-   *
-   * @note Init image2pixel.js effect
-   *
-   */
-  -->
-  <script type="module">
+        <!--
+        /**
+         *
+         * @note Menu
+         *
+         */
+        -->
+        <nav class="menu">
+            <a class="menu-item" href="#">Air effect</a>
+            <a class="menu-item" href="#">Magnetic effect</a>
+            <a class="menu-item" href="https://github.com/cmdepi/image2pixel.js" target="_blank">Source code</a>
+        </nav>
+    </div>
+
+    <!--
+    /**
+     *
+     * @note Content
+     *
+     */
+    -->
+    <div class="content">
+        <canvas id='canvas'></canvas>
+    </div>
+
+    <!--
+    /**
+     *
+     * @note Init image2pixel.js effect
+     *
+     */
+    -->
+    <script type="module">
     import Bootstrap from './js/bootstrap.js';
     const bootstrap                     = new Bootstrap();
     const backgroundColor               = '#000';
     document.body.style.backgroundColor = backgroundColor;
     bootstrap.run(
-      {
-        src: 'idols/images/messias.png',
-        width: 540,
-        height: 405
-      },
-      'canvas',
-      backgroundColor
+        {
+            src   : 'images/idols/messias.png',
+            width : 540,
+            height: 405
+        },
+        'canvas',
+        backgroundColor
     );
-  </script>
+    </script>
 </body>
 </html>

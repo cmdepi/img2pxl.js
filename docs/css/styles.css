@@ -8,23 +8,88 @@
 
 /**
  *
- * @note General styles
+ * @note Add font
  *
  */
-body {
-    margin : 0;
-    padding: 0;
+@font-face {
+    font-family : 'Courier Prime';
+    font-style  : normal;
+    font-weight : normal;
+    font-display: swap;
+    src         : url('../fonts/courier_prime_regular.woff2') format('woff2'), url('../fonts/courier_prime_regular.woff') format('woff'), url('../fonts/courier_prime_regular.ttf') format('ttf');
+}
+@font-face {
+    font-family : 'Courier Prime';
+    font-style  : normal;
+    font-weight : bold;
+    font-display: swap;
+    src         : url('../fonts/courier_prime_bold.woff2') format('woff2'), url('../fonts/courier_prime_bold.woff') format('woff'), url('../fonts/courier_prime_bold.ttf') format('ttf');
 }
 
 /**
  *
+ * @note General styles
+ * @note Set full size page
+ * @note Remove margins and paddings
+ * @note Add custom font
+ *
+ */
+* {
+    margin     : 0;
+    padding    : 0;
+    box-sizing : border-box;
+}
+body {
+    height          : 100vh;
+    width           : 100vw;
+    color           : #fff;
+    background-color: #000;
+    font-family     : 'Courier Prime', monospace;
+}
+
+/**
+ *
+ * @note Header
+ *
+ */
+.header {
+    width          : 100%;
+    height         : 10%;
+    padding        : 2%;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    border-bottom  : 1px solid #fff;
+}
+.header .title {
+    width      : 50%;
+    font-size  : 1.1em;
+    font-weight: bold;
+}
+.header .menu {
+    width          : 50%;
+    display        : flex;
+    align-items    : center;
+    justify-content: flex-end;
+}
+.header .menu .menu-item {
+    text-decoration: none;
+    font-size      : .8em;
+    color          : #fff;
+    margin         : 0 4%;
+}
+
+/**
+ *
+ * @note Content
  * @note Move canvas to center
  *
  */
-.pixel-pool {
+.content {
+    width          : 100%;
+    height         : 90%;
+    padding        : 0 2%;
     display        : flex;
     justify-content: center;
     align-items    : center;
-    width          : 100vw;
-    height         : 100vh;
 }
