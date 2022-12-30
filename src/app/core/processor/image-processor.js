@@ -76,13 +76,13 @@ export default class ImageProcessor {
          * @note Loop image rows
          *
          */
-        for (let y = 0; y < imageData.height; y += this.#gap) {
+        for (let y = 0; y < imageData.height; y++) {
             /**
              *
              * @note Loop image columns
              *
              */
-            for (let x = 0; x < imageData.width; x += this.#gap) {
+            for (let x = 0; x < imageData.width; x++) {
                 /**
                  *
                  * @note Process pixel color
@@ -93,9 +93,10 @@ export default class ImageProcessor {
                 /**
                  *
                  * @note By default, avoid processing transparent pixels
+                 * @note Gap validation is used here instead of before pixel color processing because pixel color processing could also modify the image information to be used in rendering, and it is important that this information is adjusted so that it maintains values consistent with that of the generated pixels
                  *
                  */
-                if (color.alpha > 0) {
+                if ((!((x + 1) % this.#gap)) && (color.alpha > 0)) {
                     /**
                      *
                      * @note Process pixel
@@ -127,6 +128,8 @@ export default class ImageProcessor {
      * @protected
      *
      * @note This method was implemented to add the possibility of customizing the color of the pixel
+     * @note This method also could update the image data
+     * @note It is used only this method to process the image data and generate the pixel color to avoid the implementation of an extra loop that only process the image data
      *
      */
     _processPixelColor(imageData, x, y) {
