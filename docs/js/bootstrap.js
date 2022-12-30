@@ -5,43 +5,103 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import AirImageBuilder from '../../src/app/effect-air/builder/image-builder/air-image-builder.js';
-import Image2Pixel     from '../../src/image2pixel.js';
+import Image2Pixel         from '../../src/image2pixel.js';
+import RandomObjectManager from './bootstrap/random-object-manager.js';
 
 export default class Bootstrap {
     /**
      *
-     * Run
-     *
-     * @param {{src: String, width: Number, height: Number}} image
-     * @param {String}                                       canvasId
-     * @param {String}                                       backgroundColor
-     *
-     * @returns {void}
+     * @type {(Image2Pixel|null)}
      *
      */
-    run(image, canvasId, backgroundColor) {
-        new Image2Pixel(this.#createImageBuilder(image, canvasId, backgroundColor));
+    #animation = null;
+
+    /**
+     *
+     * @type {RandomObjectManager}
+     *
+     */
+    #randomObjectManager
+
+    /**
+     *
+     * Constructor
+     *
+     * @param {String} canvasId
+     * @param {String} canvasBackgroundColor
+     *
+     */
+    constructor(canvasId, canvasBackgroundColor) {
+        this.#initDocument(canvasBackgroundColor);
+        this.#initRandomObjectManager(canvasId, canvasBackgroundColor);
     }
 
     /**
      *
-     * Factory method. Create image builder
+     * Run
      *
-     * @param {{src: String, width: Number, height: Number}} image
-     * @param {String}                                       canvasId
-     * @param {String}                                       backgroundColor
-     *
-     * @returns ImageBuilder
+     * @returns {void}
      *
      */
-    #createImageBuilder(image, canvasId, backgroundColor) {
-        return new AirImageBuilder(
-            image,
-            canvasId,
-            null,
-            backgroundColor
-        );
+    run() {
+        /**
+         *
+         * @note Check if there is an animation already running
+         *
+         */
+        if (this.#animation) {
+            /**
+             *
+             * @note Cancel animation
+             *
+             */
+            this.#animation.cancelAnimation();
+        }
+
+        /**
+         *
+         * @note Init animation
+         *
+         */
+        this.#initAnimation();
+    }
+
+    /**
+     *
+     * Init animation
+     *
+     * @returns {void}
+     *
+     */
+    #initAnimation() {
+        this.#animation = new Image2Pixel(this.#randomObjectManager.create());
+    }
+
+    /**
+     *
+     * Init random object manager
+     *
+     * @param {String} canvasId
+     * @param {String} canvasBackgroundColor
+     *
+     * @returns {void}
+     *
+     */
+    #initRandomObjectManager(canvasId, canvasBackgroundColor) {
+        this.#randomObjectManager = new RandomObjectManager(canvasId, canvasBackgroundColor);
+    }
+
+    /**
+     *
+     * Init document
+     *
+     * @param {String} canvasBackgroundColor
+     *
+     * @returns {void}
+     *
+     */
+    #initDocument(canvasBackgroundColor) {
+        document.body.style.backgroundColor = canvasBackgroundColor;
     }
 }
 
