@@ -48,8 +48,10 @@ export default class AirImageBuilder extends ImageBuilder {
      *
      * @protected
      *
+     * @note This air effect does not need a full resolution image, that is way the gap is set to 3
+     *
      */
     _createImageProcessor() {
-        return new AirImageProcessor(this.context, this.image);
+        return new AirImageProcessor(this.context, this.image, 3);
     }
 }

@@ -12,21 +12,6 @@ import AirPixel       from '../../model/image/item/particle/pixel/air-pixel.js';
 export default class AirImageProcessor extends ImageProcessor {
     /**
      *
-     * Constructor
-     *
-     * @param {CanvasRenderingContext2D} context
-     * @param {HTMLImageElement}         image
-     * @param {Number}                   gap
-     *
-     * @note Update default gap value. This air effect does not need a full resolution image
-     *
-     */
-    constructor(context, image, gap = 3) {
-        super(context, image, gap);
-    }
-
-    /**
-     *
      * Process pixel
      *
      * @param {{red: Number, green: Number, blue: Number, alpha: Number}} color
