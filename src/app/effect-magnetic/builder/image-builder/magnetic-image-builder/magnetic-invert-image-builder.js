@@ -6,7 +6,7 @@
  *
  */
 import MagneticImageBuilder         from '../magnetic-image-builder.js';
-import MagneticInvertImageProcessor from '../../../processor/image-processor/grayscale-image-processor/magnetic-grayscale-image-processor.js';
+import MagneticInvertImageProcessor from '../../../processor/image-processor/invert-image-processor/magnetic-invert-image-processor.js';
 
 export default class MagneticInvertImageBuilder extends MagneticImageBuilder {
     /**
