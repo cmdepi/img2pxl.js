@@ -82,6 +82,7 @@ body {
  *
  * @note Content
  * @note Move canvas to center
+ * @note Add canvas border effect
  *
  */
 .content {
@@ -93,5 +94,11 @@ body {
     align-items    : center;
 }
 .content canvas {
-    border: 1px solid #fff;
+    transition  : border-color 1s ease;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #000;
+}
+.content canvas:hover {
+    border-color: #fff;
 }
