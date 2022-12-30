@@ -88,7 +88,7 @@ export default class ImageProcessor {
                  * @note Get pixel color
                  *
                  */
-                const color = Image.getImagePixelColorsFromImageData(imageData, x, y);
+                const color = this._getPixelColor(imageData, x, y);
 
                 /**
                  *
@@ -112,6 +112,25 @@ export default class ImageProcessor {
          *
          */
         return {imageData: imageData, pixels: pixels};
+    }
+
+    /**
+     *
+     * Get pixel color
+     *
+     * @param {ImageData} imageData
+     * @param {Number}    x
+     * @param {Number}    y
+     *
+     * @returns {{red: Number, green: Number, blue: Number, alpha: Number}}
+     *
+     * @protected
+     *
+     * @note This method was implemented to add the possibility of customizing the color of the pixel
+     *
+     */
+    _getPixelColor(imageData, x, y) {
+        return Image.getImagePixelColorsFromImageData(imageData, x, y);
     }
 
     /**
