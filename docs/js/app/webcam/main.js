@@ -36,6 +36,13 @@ export default class Main {
 
     /**
      *
+     * @type {(Number|null)}
+     *
+     */
+    #animationId = null;
+
+    /**
+     *
      * Constructor
      *
      * @param {String} canvasId
@@ -48,6 +55,25 @@ export default class Main {
         this.#initCanvas(canvasId, width);
         this.#initShootButton(canvasContainerId);
         this.#captureVideo();
+    }
+
+    /**
+     *
+     * Take photo from video (webcam)
+     *
+     * @returns {HTMLImageElement}
+     *
+     */
+    shoot() {
+        if (this.#animationId) {
+            cancelAnimationFrame(this.#animationId);
+        }
+        const data   = this.#canvas.toDataURL('image/png');
+        const image  = new Image();
+        image.src    = data;
+        image.width  = this.#canvas.width;
+        image.height = this.#canvas.height;
+        return image;
     }
 
     /**
@@ -75,7 +101,7 @@ export default class Main {
      */
     #drawVideo() {
         this.#context.drawImage(this.#video, 0, 0, this.#canvas.width, this.#canvas.height);
-        requestAnimationFrame(this.#drawVideo.bind(this));
+        this.#animationId = requestAnimationFrame(this.#drawVideo.bind(this));
     }
 
     /**
@@ -92,6 +118,10 @@ export default class Main {
         this.#shootButton = document.createElement('button');
         this.#shootButton.classList.add('shoot');
         this.#shootButton.textContent = 'Shoot';
+        this.#shootButton.addEventListener('click', (event) => {
+           event.preventDefault();
+           this.shoot();
+        });
         container.appendChild(this.#shootButton);
     }
 
