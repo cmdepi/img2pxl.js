@@ -1,6 +1,6 @@
 /**
  *
- * @description Random object manager
+ * @description Object manager
  *
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
@@ -12,7 +12,7 @@ import AirImageBuilder               from 'https://cdn.jsdelivr.net/gh/cmdepi/im
 import AirGrayscaleImageBuilder      from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-air/builder/image-builder/air-image-builder/air-grayscale-image-builder.js';
 import AirInvertImageBuilder         from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/app/effect-air/builder/image-builder/air-image-builder/air-invert-image-builder.js';
 
-export default class RandomObjectManager {
+export default class ObjectManager {
     /**
      *
      * @type {String}
