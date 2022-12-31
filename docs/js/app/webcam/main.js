@@ -1,6 +1,6 @@
 /**
  *
- * @description Webcam feature
+ * @description Entry point for webcam feature
  *
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *

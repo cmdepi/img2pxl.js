@@ -1,6 +1,6 @@
 /**
  *
- * @description Image2Pixel
+ * @description Entry point
  *
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
