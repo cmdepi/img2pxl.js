@@ -8,6 +8,13 @@
 export default class Main {
     /**
      *
+     * @type {HTMLButtonElement}
+     *
+     */
+    #shootButton;
+
+    /**
+     *
      * @type {HTMLVideoElement}
      *
      */
@@ -32,12 +39,14 @@ export default class Main {
      * Constructor
      *
      * @param {String} canvasId
+     * @param {String} canvasContainerId
      * @param {Number} width
      *
      */
-    constructor(canvasId, width = 350) {
+    constructor(canvasId, canvasContainerId, width = 350) {
         this.#initVideo();
         this.#initCanvas(canvasId, width);
+        this.#initShootButton(canvasContainerId);
         this.#captureVideo();
     }
 
@@ -67,6 +76,23 @@ export default class Main {
     #drawVideo() {
         this.#context.drawImage(this.#video, 0, 0, this.#canvas.width, this.#canvas.height);
         requestAnimationFrame(this.#drawVideo.bind(this));
+    }
+
+    /**
+     *
+     * Init shoot button
+     *
+     * @param {String} canvasContainerId
+     *
+     * @returns {void}
+     *
+     */
+    #initShootButton(canvasContainerId) {
+        const container   = document.getElementById(canvasContainerId);
+        this.#shootButton = document.createElement('button');
+        this.#shootButton.classList.add('shoot');
+        this.#shootButton.textContent = 'Shoot';
+        container.appendChild(this.#shootButton);
     }
 
     /**
