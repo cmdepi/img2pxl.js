@@ -5,23 +5,15 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import Image2Pixel   from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/image2pixel.js';
-import ObjectManager from './app/core/object-manager.js';
+import PixelEffect from './app/image2pixel/main.js';
 
 export default class Bootstrap {
     /**
      *
-     * @type {(Image2Pixel|null)}
+     * @type {PixelEffect}
      *
      */
-    #animation = null;
-
-    /**
-     *
-     * @type {ObjectManager}
-     *
-     */
-    #objectManager
+    #pixelEffect;
 
     /**
      *
@@ -29,28 +21,14 @@ export default class Bootstrap {
      *
      * @param {String}                         canvasId
      * @param {String}                         canvasBackgroundColor
-     * @param {[{id: String, effect: String}]} effectButtons
+     * @param {[{id: String, effect: String}]} pixelEffectButtons
      *
      */
-    constructor(canvasId, canvasBackgroundColor, effectButtons) {
+    constructor(canvasId, canvasBackgroundColor, pixelEffectButtons) {
         this.#initDocument(canvasBackgroundColor);
-        this.#initObjectManager(canvasId, canvasBackgroundColor);
-        this.#initEffectEventListeners(effectButtons);
+        this.#initPixelEffect(canvasId, canvasBackgroundColor);
+        this.#initPixelEffectEventListeners(pixelEffectButtons);
         this.#initAnimation();
-    }
-
-    /**
-     *
-     * Run
-     *
-     * @param {String} effect
-     *
-     * @returns {void}
-     *
-     */
-    run(effect) {
-        this.#animation.cancelAnimation();
-        this.#createAnimation(this.#objectManager.createFromEffect(effect));
     }
 
     /**
@@ -61,31 +39,31 @@ export default class Bootstrap {
      *
      */
     #initAnimation() {
-        this.#createAnimation(this.#objectManager.create());
+        this.#pixelEffect.run();
     }
 
     /**
      *
-     * Init effect event listeners
+     * Init pixel effect event listeners
      *
-     * @param {[{id: String, effect: String}]} effectButtons
+     * @param {[{id: String, effect: String}]} pixelEffectButtons
      *
      * @returns {void}
      *
      */
-    #initEffectEventListeners(effectButtons) {
-        effectButtons.forEach((button) => {
+    #initPixelEffectEventListeners(pixelEffectButtons) {
+        pixelEffectButtons.forEach((button) => {
             const buttonElement = document.getElementById(button.id);
             buttonElement.addEventListener('click', (event) => {
                 event.preventDefault();
-                this.run(button.effect);
+                this.#pixelEffect.run(button.effect);
             });
         });
     }
 
     /**
      *
-     * Init object manager
+     * Init image2pixel.js effect
      *
      * @param {String} canvasId
      * @param {String} canvasBackgroundColor
@@ -93,8 +71,8 @@ export default class Bootstrap {
      * @returns {void}
      *
      */
-    #initObjectManager(canvasId, canvasBackgroundColor) {
-        this.#objectManager = new ObjectManager(canvasId, canvasBackgroundColor);
+    #initPixelEffect(canvasId, canvasBackgroundColor) {
+        this.#pixelEffect = new PixelEffect(canvasId, canvasBackgroundColor);
     }
 
     /**
@@ -108,19 +86,6 @@ export default class Bootstrap {
      */
     #initDocument(canvasBackgroundColor) {
         document.body.style.backgroundColor = canvasBackgroundColor;
-    }
-
-    /**
-     *
-     * Create animation
-     *
-     * @param {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)} imageBuilder
-     *
-     * @returns {void}
-     *
-     */
-    #createAnimation(imageBuilder) {
-        this.#animation = new Image2Pixel(imageBuilder);
     }
 }
 

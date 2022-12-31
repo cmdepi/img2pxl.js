@@ -108,37 +108,26 @@ export default class ObjectManager {
     constructor(canvasId, canvasBackgroundColor) {
         this.#canvasId              = canvasId;
         this.#canvasBackgroundColor = canvasBackgroundColor;
+        this.#effect                = this.#getRandomEffect();
+        this.#mode                  = this.#getRandomMode();
+        this.#idol                  = this.#getRandomIdol();
     }
 
     /**
      *
      * Create
      *
-     * @returns {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)}
-     *
-     */
-    create() {
-        this.#effect = this.#getRandomEffect();
-        this.#mode   = this.#getRandomMode();
-        this.#idol   = this.#getRandomIdol();
-        return this.#createBuilder();
-    }
-
-    /**
-     *
-     * Create from effect
-     *
-     * @param {String}                                            effect
+     * @param {String|null}                                       effect
      * @param {String|null}                                       mode
      * @param {{src: String, width: Number, height: Number}|null} idol
      *
      * @returns {(MagneticGrayscaleImageBuilder|AirInvertImageBuilder|AirGrayscaleImageBuilder|AirImageBuilder|MagneticImageBuilder|MagneticInvertImageBuilder)}
      *
      */
-    createFromEffect(effect, mode = null, idol = null) {
-        this.#effect = effect;
-        this.#mode   = mode ? mode : this.#mode;
-        this.#idol   = idol ? idol : this.#idol;
+    create(effect = null, mode = null, idol = null) {
+        this.#effect = effect ? effect: this.#effect;
+        this.#mode   = mode   ? mode  : this.#mode;
+        this.#idol   = idol   ? idol  : this.#idol;
         return this.#createBuilder();
     }
 
