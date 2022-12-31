@@ -66,7 +66,20 @@
     -->
     <script type="module">
     import Bootstrap from './js/bootstrap.js';
-    new Bootstrap('canvas', '#000');
+    new Bootstrap(
+        'canvas',
+        '#000',
+        [
+            {
+                id    : 'air_effect_btn',
+                effect: 'air'
+            },
+            {
+                id    : 'magnetic_effect_btn',
+                effect: 'magnetic'
+            }
+        ]
+    );
     </script>
 </body>
 </html>

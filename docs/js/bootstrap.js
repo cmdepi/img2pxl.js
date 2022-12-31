@@ -6,7 +6,7 @@
  *
  */
 import Image2Pixel         from 'https://cdn.jsdelivr.net/gh/cmdepi/image2pixel.js@master/src/image2pixel.js';
-import RandomObjectManager from './bootstrap/random-object-manager.js';
+import RandomObjectManager from './app/core/random-object-manager.js';
 
 export default class Bootstrap {
     /**
@@ -27,14 +27,15 @@ export default class Bootstrap {
      *
      * Constructor
      *
-     * @param {String} canvasId
-     * @param {String} canvasBackgroundColor
+     * @param {String}                         canvasId
+     * @param {String}                         canvasBackgroundColor
+     * @param {[{id: String, effect: String}]} buttons
      *
      */
-    constructor(canvasId, canvasBackgroundColor) {
+    constructor(canvasId, canvasBackgroundColor, buttons) {
         this.#initDocument(canvasBackgroundColor);
         this.#initRandomObjectManager(canvasId, canvasBackgroundColor);
-        this.#initEventListeners();
+        this.#initEventListeners(buttons);
         this.#initAnimation();
     }
 
@@ -67,20 +68,19 @@ export default class Bootstrap {
      *
      * Init event listeners
      *
+     * @param {[{id: String, effect: String}]} buttons
+     *
      * @returns {void}
      *
      */
-    #initEventListeners() {
-        const airEffectBtn      = document.getElementById('air_effect_btn');
-        const magneticEffectBtn = document.getElementById('magnetic_effect_btn');
-        airEffectBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            this.run('air');
-        })
-        magneticEffectBtn.addEventListener('click', (event) => {
-            event.preventDefault();
-            this.run('magnetic');
-        })
+    #initEventListeners(buttons) {
+        buttons.forEach((button) => {
+            const buttonElement = document.getElementById(button.id);
+            buttonElement.addEventListener('click', (event) => {
+                event.preventDefault();
+                this.run(button.effect);
+            });
+        });
     }
 
     /**
