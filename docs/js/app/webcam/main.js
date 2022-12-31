@@ -8,13 +8,6 @@
 export default class Main {
     /**
      *
-     * @type {HTMLButtonElement}
-     *
-     */
-    #shootButton;
-
-    /**
-     *
      * @type {HTMLVideoElement}
      *
      */
@@ -36,6 +29,15 @@ export default class Main {
 
     /**
      *
+     * @type {Number}
+     *
+     * @note Custom width to adjust video height
+     *
+     */
+    #defaultVideoWidth;
+
+    /**
+     *
      * @type {(Number|null)}
      *
      */
@@ -46,15 +48,26 @@ export default class Main {
      * Constructor
      *
      * @param {String} canvasId
-     * @param {String} canvasContainerId
-     * @param {Number} width
+     * @param {Number} defaultVideoWidth
      *
      */
-    constructor(canvasId, canvasContainerId, width = 350) {
+    constructor(canvasId, defaultVideoWidth = 350) {
+        this.#defaultVideoWidth = defaultVideoWidth;
+        this.#initCanvas(canvasId);
         this.#initVideo();
-        this.#initCanvas(canvasId, width);
-        this.#initShootButton(canvasContainerId);
-        this.#captureVideo();
+    }
+
+    /**
+     *
+     * Play video on canvas
+     *
+     * @returns {void}
+     *
+     */
+    play() {
+        this.#bootVideo();
+        this.#configVideo();
+        this.#loadVideo();
     }
 
     /**
@@ -78,7 +91,7 @@ export default class Main {
 
     /**
      *
-     * Capture video
+     * Load video
      *
      * @returns {void}
      *
@@ -86,7 +99,7 @@ export default class Main {
      * @note The onloadeddata event runs after the onloadedmetadata event
      *
      */
-    #captureVideo() {
+    #loadVideo() {
         this.#video.onloadeddata = () => {
             this.#drawVideo();
         };
@@ -106,45 +119,36 @@ export default class Main {
 
     /**
      *
-     * Init shoot button
-     *
-     * @param {String} canvasContainerId
+     * Config video
      *
      * @returns {void}
      *
+     * @note This method uses the onloadedmetadata event of the video element to set canvas dimensions using video dimensions
+     *
      */
-    #initShootButton(canvasContainerId) {
-        const container   = document.getElementById(canvasContainerId);
-        this.#shootButton = document.createElement('button');
-        this.#shootButton.classList.add('shoot');
-        this.#shootButton.textContent = 'Shoot';
-        this.#shootButton.addEventListener('click', (event) => {
-           event.preventDefault();
-           this.shoot();
-        });
-        container.appendChild(this.#shootButton);
+    #configVideo() {
+        this.#video.onloadedmetadata = () => {
+            this.#canvas.width  = this.#defaultVideoWidth;
+            this.#canvas.height = this.#defaultVideoWidth * (this.#video.videoWidth / this.#video.videoHeight);
+        };
     }
 
     /**
      *
-     * Init canvas
-     *
-     * @param {String} canvasId
-     * @param {Number} width
+     * Boot video
      *
      * @returns {void}
      *
-     * @note Use a custom width to adjust video height
-     * @note This method uses the onloadedmetadata event of the video element to set canvas dimensions using video dimensions
-     *
      */
-    #initCanvas(canvasId, width) {
-        this.#canvas  = document.getElementById(canvasId);
-        this.#context = this.#canvas.getContext('2d');
-        this.#video.onloadedmetadata = () => {
-            this.#canvas.width  = width;
-            this.#canvas.height = width * (this.#video.videoWidth / this.#video.videoHeight);
-        };
+    #bootVideo() {
+        const userMedia = navigator.mediaDevices.getUserMedia({video: true, audio: false});
+        userMedia.then((stream) => {
+            this.#video.srcObject = stream;
+            this.#video.play();
+        });
+        userMedia.catch((error) => {
+            alert('An error occurred: ' + error);
+        });
     }
 
     /**
@@ -155,14 +159,20 @@ export default class Main {
      *
      */
     #initVideo() {
-        this.#video     = document.createElement('video');
-        const userMedia = navigator.mediaDevices.getUserMedia({video: true, audio: false});
-        userMedia.then((stream) => {
-            this.#video.srcObject = stream;
-            this.#video.play();
-        });
-        userMedia.catch((error) => {
-            alert('An error occurred: ' + error);
-        });
+        this.#video = document.createElement('video');
+    }
+
+    /**
+     *
+     * Init canvas
+     *
+     * @param {String} canvasId
+     *
+     * @returns {void}
+     *
+     */
+    #initCanvas(canvasId) {
+        this.#canvas  = document.getElementById(canvasId);
+        this.#context = this.#canvas.getContext('2d');
     }
 }

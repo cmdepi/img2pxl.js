@@ -110,6 +110,7 @@ body {
     background-color: #000;
     color           : #fff;
     border          : 1px solid #fff;
+    cursor          : pointer;
     text-transform  : uppercase;
     font-family     : 'Courier Prime', monospace;
 }

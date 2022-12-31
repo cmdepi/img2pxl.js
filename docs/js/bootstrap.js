@@ -5,15 +5,25 @@
  * @author C. M. de Picciotto <cmdepicciotto@gmail.com>
  *
  */
-import PixelEffect from './app/image2pixel/main.js';
+import Image2Pixel         from './app/image2pixel/main.js';
+import Webcam              from './app/webcam/main.js';
+import Image2PixelListener from './bootstrap/listener/image2pixel-listener.js';
+import WebcamListener      from './bootstrap/listener/webcam-listener.js';
 
 export default class Bootstrap {
     /**
      *
-     * @type {PixelEffect}
+     * @type {Webcam}
      *
      */
-    #pixelEffect;
+    #webcam;
+
+    /**
+     *
+     * @type {Image2Pixel}
+     *
+     */
+    #image2Pixel;
 
     /**
      *
@@ -21,14 +31,17 @@ export default class Bootstrap {
      *
      * @param {String}                         canvasId
      * @param {String}                         canvasBackgroundColor
-     * @param {[{id: String, effect: String}]} pixelEffectButtons
+     * @param {[{id: String, effect: String}]} image2PixelButtons
+     * @param {String}                         webcamButtonId
      *
      */
-    constructor(canvasId, canvasBackgroundColor, pixelEffectButtons) {
+    constructor(canvasId, canvasBackgroundColor, image2PixelButtons, webcamButtonId) {
         this.#initDocument(canvasBackgroundColor);
-        this.#initPixelEffect(canvasId, canvasBackgroundColor);
-        this.#initPixelEffectEventListeners(pixelEffectButtons);
-        this.#initAnimation();
+        this.#initImage2Pixel(canvasId, canvasBackgroundColor);
+        this.#initWebcam(canvasId);
+        this.#initImage2PixelListener(image2PixelButtons);
+        this.#initWebcamListener(canvasId, webcamButtonId);
+        this.#init();
     }
 
     /**
@@ -38,27 +51,48 @@ export default class Bootstrap {
      * @returns {void}
      *
      */
-    #initAnimation() {
-        this.#pixelEffect.run();
+    #init() {
+        this.#image2Pixel.run();
     }
 
     /**
      *
-     * Init pixel effect event listeners
+     * Init image2pixel.js listener
      *
-     * @param {[{id: String, effect: String}]} pixelEffectButtons
+     * @param {[{id: String, effect: String}]} image2PixelButtons
      *
      * @returns {void}
      *
      */
-    #initPixelEffectEventListeners(pixelEffectButtons) {
-        pixelEffectButtons.forEach((button) => {
-            const buttonElement = document.getElementById(button.id);
-            buttonElement.addEventListener('click', (event) => {
-                event.preventDefault();
-                this.#pixelEffect.run(button.effect);
-            });
-        });
+    #initImage2PixelListener(image2PixelButtons) {
+        new Image2PixelListener(this.#image2Pixel, image2PixelButtons);
+    }
+
+    /**
+     *
+     * Init webcam listener
+     *
+     * @param {String} canvasId
+     * @param {String} webcamButtonId
+     *
+     * @returns {void}
+     *
+     */
+    #initWebcamListener(canvasId, webcamButtonId) {
+        new WebcamListener(this.#image2Pixel, this.#webcam, canvasId, webcamButtonId);
+    }
+
+    /**
+     *
+     * Init webcam feature
+     *
+     * @param {String} canvasId
+     *
+     * @returns {void}
+     *
+     */
+    #initWebcam(canvasId) {
+        this.#webcam = new Webcam(canvasId);
     }
 
     /**
@@ -71,8 +105,8 @@ export default class Bootstrap {
      * @returns {void}
      *
      */
-    #initPixelEffect(canvasId, canvasBackgroundColor) {
-        this.#pixelEffect = new PixelEffect(canvasId, canvasBackgroundColor);
+    #initImage2Pixel(canvasId, canvasBackgroundColor) {
+        this.#image2Pixel = new Image2Pixel(canvasId, canvasBackgroundColor);
     }
 
     /**

@@ -37,7 +37,7 @@ export default class Main {
 
     /**
      *
-     * Run
+     * Run animation
      *
      * @param {String|null}                                       effect
      * @param {String|null}                                       mode
@@ -47,10 +47,21 @@ export default class Main {
      *
      */
     run(effect = null, mode = null, idol = null) {
+        this.stop();
+        this.#createAnimation(this.#objectManager.create(effect, mode, idol));
+    }
+
+    /**
+     *
+     * Stop executing animation
+     *
+     * @returns {void}
+     *
+     */
+    stop() {
         if (this.#animation) {
             this.#animation.cancelAnimation();
         }
-        this.#createAnimation(this.#objectManager.create(effect, mode, idol));
     }
 
     /**
