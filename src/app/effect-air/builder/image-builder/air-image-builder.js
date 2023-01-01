@@ -52,6 +52,6 @@ export default class AirImageBuilder extends ImageBuilder {
      *
      */
     _createImageProcessor() {
-        return new AirImageProcessor(this.context, this.image, 7);
+        return new AirImageProcessor(this.context, this.image, 9);
     }
 }

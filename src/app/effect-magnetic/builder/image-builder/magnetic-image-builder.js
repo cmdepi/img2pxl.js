@@ -52,6 +52,6 @@ export default class MagneticImageBuilder extends ImageBuilder {
      *
      */
     _createImageProcessor() {
-        return new MagneticImageProcessor(this.context, this.image, 5);
+        return new MagneticImageProcessor(this.context, this.image, 8);
     }
 }

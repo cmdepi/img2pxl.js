@@ -21,6 +21,6 @@ export default class MagneticInvertImageBuilder extends MagneticImageBuilder {
      *
      */
     _createImageProcessor() {
-        return new MagneticInvertImageProcessor(this.context, this.image, 5);
+        return new MagneticInvertImageProcessor(this.context, this.image, 8);
     }
 }
