@@ -112,5 +112,52 @@ body {
     border          : 1px solid #fff;
     cursor          : pointer;
     text-transform  : uppercase;
+    font-size       : 1em;
     font-family     : 'Courier Prime', monospace;
+}
+
+/**
+ *
+ * @note Set media queries
+ * @note Max width: 400px
+ *
+ */
+@media only screen and (max-width: 400px) {
+    /**
+     *
+     * @note General styles
+     * @note Update font size
+     *
+     */
+    body {
+        font-size: .6em;
+    }
+
+    /**
+     *
+     * @note Set canvas full size
+     * @note All images have 400px width or more, so for smaller devices the images will adapt to their width
+     *
+     */
+    .content canvas {
+        width: 100%;
+    }
+}
+
+/**
+ *
+ * @note Set media queries
+ * @note Max width: 200px
+ *
+ */
+@media only screen and (max-width: 250px) {
+    /**
+     *
+     * @note General styles
+     * @note Update font size
+     *
+     */
+    body {
+        font-size: .4em;
+    }
 }
